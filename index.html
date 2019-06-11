@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Memory Game</h1>
+    <div id="time">Time: 00:00</div>
+    <div id="moves">Moves: 0</div>
+    <div id="stars">Stars: 3</div>
+  </header>
+  <main>
+    <div id="grid0" class="cell r0 c0">X</div><div id="grid1" class="cell r0 c1">X</div><div id="grid2" class="cell r0 c2">X</div><div id="grid3" class="cell r0 c3">X</div>
+    <div id="grid4" class="cell r1 c0">X</div><div id="grid5" class="cell r1 c1">X</div><div id="grid6" class="cell r1 c2">X</div><div id="grid7" class="cell r1 c3">X</div>
+    <div id="grid8" class="cell r2 c0">X</div><div id="grid9" class="cell r2 c1">X</div><div id="grid10" class="cell r2 c2">X</div><div id="grid11" class="cell r2 c3">X</div>
+    <div id="grid12" class="cell r3 c0">X</div><div id="grid13" class="cell r3 c1">X</div><div id="grid14" class="cell r3 c2">X</div><div id="grid15" class="cell r3 c3">X</div>
+  </main>
+  <div id="instr-panel" class="visible-panel">
+    <p>Select pairs of tiles to find matching tiles. Non-matching tiles will be hidden again, so try to remember them. Find all 8 pairs quickly and in as few moves as possible to get the best star rating.</p>
+    <button id="start-game-btn">Start Game</button>
+  </div>
+  <div id="win-panel" class="hidden-panel">
+    <p>You won!</p>
+    <button id="new-game-btn">New Game</button>
+  </div>
+  <script>
+    // Initialise user interface as soon as DOM is loaded
+    document.addEventListener('DOMContentLoaded', initUI(), false);
+  </script>
+</body>
+</html>

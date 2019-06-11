@@ -1,0 +1,19 @@
+body {
+  font-size: 1.5em;
+}
+
+.hidden-panel {
+  display: none;
+}
+
+.visible-panel {
+  display: block;
+}
+
+.cell {
+  display: inline-block;
+  width: 25%;
+  margin-top: 50px;
+  text-align: center;
+  font-size: 2em;
+}
