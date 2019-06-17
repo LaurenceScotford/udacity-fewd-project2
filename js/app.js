@@ -4,6 +4,14 @@ const NUM_TILESETS = 2;           // The number of tilesets in the grid
 const NUM_TILES = 8;              // The number of tiles in a tileset
 const TICK_LENGTH = 1000;         // Tghe frequency with which the clock is updated (every 1 second)
 const DELAY_AFTER_REVEAL = 1000;  // The time for which tiles are shown before the grid/model are updated (1 second)
+const TILESETS = [
+  {name: "Food and Drink",
+   images: ["cake", "free_breakfast", "restaurant", "local_bar", "local_dining", "fastfood", "local_pizza", "local_drink"]},
+  {name: "Transport",
+   images: ["directions_bike", "directions_boat", "directions_bus", "directions_car", "flight", "local_shipping", "tram", "train"]},
+  {name: "Emoticons",
+   images: ["mood", "mood_bad", "sentiment_dissatisfied", "sentiment_satisfied", "sentiment_very_dissatisfied", "thumb_down", "thumb_up", "favorite"]},
+];
 
 // Data model
 var mgModel = {
@@ -15,7 +23,8 @@ var mgModel = {
   tiles: [],          // An array holding the game tiles
   startTime: 0,       // The time at which the game was started
   timer: null,        // Handle for the timer handler
-  trackEvents: false  // True if click events are currenly being tracked
+  trackEvents: false, // True if click events are currenly being tracked
+  tileset: 0          // Tileset in use
 };
 
 // Game logic and data model functions
@@ -59,6 +68,7 @@ function shuffle(outputArray) {
   }
 
   // Select items at random from the ordered array and place them into outputArray
+  console.log("\n");    // DEVELOPMENT FEATURE
   let consoleOut = "";  // DEVELOPMENT FEATURE
   while (tilesTemp.length > 0) {
     let cellInfo = tilesTemp.splice(Math.floor(Math.random() * tilesTemp.length), 1);
@@ -154,7 +164,8 @@ function won() {
   mgModel.trackEvents = false;
 
   // Show the game won panel
-  document.querySelector("#win-panel").classList.replace("hidden-panel","visible-panel");
+  document.querySelector("#mask").classList.replace("hidden-mask","visible-mask");
+  document.querySelector("#modal-dialog").classList.replace("hidden-panel","visible-panel");
 }
 
 /**
@@ -184,20 +195,45 @@ function checkStars() {
  * @description Sets up references to UI elements and event handlers
  */
 function initUI() {
+  // Update the name and icon for the set selection on the model dialogue
+  updateSetSelection();
+  // Set up event handlers for the controls on the modal dialogue
+  document.querySelector("#prev-set").addEventListener("click", changeSet);
+  document.querySelector("#next-set").addEventListener("click", changeSet);
   document.querySelector("#start-game-btn").addEventListener("click", function() {
-    document.querySelector("#instr-panel").classList.replace("visible-panel","hidden-panel");
-    startGame();
-  });
-  document.querySelector("#new-game-btn").addEventListener("click", function() {
-    document.querySelector("#win-panel").classList.replace("visible-panel","hidden-panel");
+    document.querySelector("#modal-dialog").classList.replace("visible-panel","hidden-panel");
+    document.querySelector("#modal-dialog h2").innerHTML = "You won!";    
+    document.querySelector("#modal-text").innerHTML = "Want to play again?";
+    document.querySelector("#mask").classList.replace("visible-mask","hidden-mask");
     startGame();
   });
   document.querySelector("main").addEventListener("click", playerInput);
 }
 
 /**
+ * @description Updates the current set name and icon in the set selector on the modal dialogue
+ */
+function updateSetSelection() {
+  document.querySelector("#set-name").innerHTML = TILESETS[mgModel.tileset].name;
+  document.querySelector("#set-icon").innerHTML = TILESETS[mgModel.tileset].images[0];
+}
+
+/**
+ * @description Event handler called when one of the buttons to change the set is clicked
+ * @param {Object} event Event structure sent to the handler
+ */
+function changeSet(event) {
+  if (event.target.id === "prev-set") {
+    mgModel.tileset = (mgModel.tileset === 0 ? TILESETS.length - 1 : mgModel.tileset - 1);
+  } else {
+    mgModel.tileset = (mgModel.tileset === TILESETS.length - 1 ? 0 : mgModel.tileset + 1);
+  }
+  updateSetSelection();
+}
+
+/**
  * @description Handler called when the player clicks within the grid
- * @param {Number} event Event structure sent to the handler
+ * @param {Object} event Event structure sent to the handler
  */
 function playerInput(event) {
   // if we are currently tracking events and the click is inside one of the grid cells, select that cell
@@ -214,7 +250,22 @@ function drawGameInfo() {
   let formattedTime = formatTime(mgModel.time);
   document.querySelector("#time").innerHTML = `Time: ${formattedTime}`;
   document.querySelector("#moves").innerHTML = `Moves: ${mgModel.moves}`;
-  document.querySelector("#stars").innerHTML = `Stars: ${mgModel.stars}`;
+  drawStars();
+}
+
+/**
+ * @description Draws the current number of stars awarded to the player on the UI
+ */
+function drawStars() {
+  let starHTML = ""
+  for (let star = 0; star < NUM_STARS; star++) {
+    if (star < mgModel.stars) {
+      starHTML += "star "
+    } else {
+      starHTML += "star_border "
+    }
+  }
+  document.querySelector("#stars").innerHTML = starHTML;
 }
 
 /**
@@ -223,7 +274,7 @@ function drawGameInfo() {
 function drawGrid() {
   let gridItem = 0;
   for (let cell of mgModel.tiles) {
-    document.querySelector(`#grid${gridItem}`).innerHTML = (cell[0].state === "unmatched" ? "X" : cell[0].tile);
+    document.querySelector(`#grid${gridItem}`).innerHTML = (cell[0].state === "unmatched" ? "texture" : TILESETS[mgModel.tileset].images[cell[0].tile]);
     gridItem++;
   }
 }
