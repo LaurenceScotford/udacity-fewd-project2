@@ -2,9 +2,9 @@
 ## Project 2 - Memory Game
 This project is a responsive HTML5 game. It's a version of the popular memory game, traditionally played with a physical deck of cards. In this game, the player reveals hidden images in pairs. There are 8 pairs of images and the aim of the game is to match all 8 pairs as quickly as possible.
 
-To play the game, the player simply clicks on a pair of hidden images one at a time. When clicked, the images will be revealed. If they match they'll stay revealed, while non-matching tiles will be hidden again.
+To play the game, the player simply clicks on a pair of hidden images one at a time. When clicked, the images will be revealed. If they match they'll stay revealed, while non-matching images will be hidden again.
 
-Once the player has matched all 8 tiles, they will be awarded from 1 to 3 stars based on how long they took and how many moves they made.
+Once the player has matched all 8 pairs, they will be awarded from 1 to 3 stars based on how long they took and how many moves they made.
 
 ### Target platforms
 This game is designed for recent browsers (across multiple devices including phones, tablets and laptops/desktop PCs) that support HTML5.
