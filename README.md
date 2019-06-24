@@ -1,5 +1,5 @@
 # Udacity Front-End Web Developer Nanodegree
-## Project 2 - Build a Portfolio Site
+## Project 2 - Memory Game
 This project is a responsive HTML5 game. It's a version of the popular memory game, traditionally played with a physical deck of cards. In this game, the player reveals hidden images in pairs. There are 8 pairs of images and the aim of the game is to match all 8 pairs as quickly as possible.
 
 To play the game, the player simply clicks on a pair of hidden images one at a time. When clicked, the images will be revealed. If they match they'll stay revealed, while non-matching tiles will be hidden again.
