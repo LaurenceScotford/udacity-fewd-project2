@@ -217,6 +217,7 @@ function initUI() {
     document.querySelector('#modal-text-result').classList.replace('hidden-section', 'visible-section');
     startGame();
   });
+  document.querySelector('#restart').addEventListener('click', startGame);
   document.querySelector('main').addEventListener('click', playerInput);
 }
 
