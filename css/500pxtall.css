@@ -1,0 +1,13 @@
+/* Memory Game CSS for 500px tall displays */
+
+body {
+  font-size: 1.75em;
+}
+
+.visible-panel {
+  width: 70%;
+  left: 15%;
+  top: 10%;
+  height: 80%;
+  font-size: 0.75em;
+}

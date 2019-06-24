@@ -1,0 +1,6 @@
+/* Memory Game CSS for 1000px wide displays */
+
+.cell {
+  font-size: 3em;
+  margin-top: 0.3em;
+}

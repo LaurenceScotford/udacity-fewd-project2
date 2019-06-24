@@ -1,3 +1,5 @@
+/* Memory Game CSS - default for porttrait mobile displays and baseline for other displays */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,8 +7,7 @@
 
 body {
   width: 100%;
-  font-family: 'Abel', sans-serif;
-  font-size: 1.5em;
+  font: 1.5em "Abel", sans-serif;
   padding: 0 0.5em;
 }
 
@@ -31,6 +32,12 @@ h2 {
   font-weight: bold;
 }
 
+main {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 header div {
   width: 33%;
   text-align: center;
@@ -38,7 +45,7 @@ header div {
 
 
 button:hover {
-  color: red;
+  color: #f00;
 }
 
 .visible-mask {
@@ -50,8 +57,15 @@ button:hover {
   background-color: rgba(0, 0, 0, 0.75);
 }
 
-.hidden-panel, .hidden-mask {
+.hidden-panel,
+.hidden-mask,
+.hidden-section {
   display: none;
+}
+
+.visible-section {
+  display: block;
+  width: 100%;
 }
 
 .visible-panel {
@@ -68,46 +82,52 @@ button:hover {
 }
 
 .cell {
-  display: inline-block;
+  display: block;
   width: 25%;
-  margin-top: 50px;
+  margin-top: 0.4em;
   text-align: center;
-  font-size: 2em;
+  font-size: 2.5em;
+  cursor: pointer;
+}
+
+.selected-cell {
+  color: #0cc;
 }
 
 .set-slct-btn {
   font-size: 2em;
 }
 
-.button-container {
+.button-container,
+.center {
   text-align: center;
 }
 
-#set-selection {
+.set-selection {
   padding-top: 2em;
 }
 
-#set-name {
+.set-name {
   padding: 0.5em 0 0.2em 0;
   text-align: center;
   font-weight: bold;
 }
 
-#set-slct-ctrls {
+.set-slct-ctrls {
   width: 100%;
   display: flex;
   justify-content: space-around;
 }
 
-#set-icon {
+.set-icon {
   font-size: 2em;
 }
 
-#start-game-btn {
+.start-game-btn {
   font-size: 1em;
   margin: 0.5em auto;
 }
 
-#stars {
+.stars {
   font-size: 1.2em;
 }

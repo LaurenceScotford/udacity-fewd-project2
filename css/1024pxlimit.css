@@ -1,0 +1,7 @@
+/* Memory Game CSS to limit max playfield width to 1024px */
+
+body {
+  width: 1024px;
+  margin: 0 auto;
+  font-size: 2.5em;
+}

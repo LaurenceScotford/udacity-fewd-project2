@@ -1,0 +1,46 @@
+/* Memory Game CSS for landscape displays */
+
+header {
+  width: 25%;
+  flex-direction: column;
+  text-align: center;
+}
+
+header div {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+main {
+  width: 75%;
+  margin: auto 0;
+}
+
+h1 {
+  font-size: 1.25em;
+}
+
+.cell {
+  margin-top: 0;
+}
+
+.modal-dialog {
+  display: flex;
+}
+
+.modal-text-start,
+.modal-text-result {
+  padding-right: 0.2em;
+  border-right: 1px solid #000000;
+  width: 50%
+}
+
+.set-selection {
+  width: 50%
+}
+
+.game-layer {
+  display: flex;
+  width: 100%;
+  margin-top: 0.5em;
+}
